@@ -29,7 +29,7 @@ namespace BehaviourTree {
                 curStatus = BTActionStatus.Running;
             }
 
-            // not using else so that the status changes reflect instantly
+            // 即时反应
             if (curStatus == BTActionStatus.Running) {
                 executeResult = Execute();
                 if (executeResult != BTResult.Running) {
