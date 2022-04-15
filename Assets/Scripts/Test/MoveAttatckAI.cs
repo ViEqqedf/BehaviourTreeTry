@@ -35,25 +35,17 @@ public class MoveAttatckAI : BTTree
         root.AddChild(escape);
 
         // Fight
-        // InSightPrec gobInSight = new InSightPrec(sightForGoblin, GOBLIN_NAME);
-		// FindToTargetDestination findFightDestination = new FindToTargetDestination(
-            // GOBLIN_NAME, DESTINATION, fightDistance * 0.9f);
-        // BTSequence fight = new BTSequence("Fight", gobInSight);
-        // BTParallel fightParallel = new BTParallel("FightParallel", BTParallel.ParallelFunction.Or);
-        // fightParallel.AddChild(findFightDestination);
-        // fightParallel.AddChild(move);
-        // InSightPrec gobInFightDistance = new InSightPrec(fightDistance, GOBLIN_NAME);
-        // fight.AddChild(fightParallel);
-        // fight.AddChild(new PlayAnimation(FIGHT_ANIMATION, gobInFightDistance));
-        // root.AddChild(fight);
-
         InSightPrec gobInSight = new InSightPrec(sightForGoblin, GOBLIN_NAME);
-        FindEscapeDestination findGobEscapeDestination = new FindEscapeDestination(
-            GOBLIN_NAME, DESTINATION, sightForGoblin);
-        BTParallel gobEscape = new BTParallel("Fight", BTParallel.ParallelFunction.Or, gobInSight);
-        gobEscape.AddChild(findGobEscapeDestination);
-        gobEscape.AddChild(move);
-        root.AddChild(gobEscape);
+		FindToTargetDestination findFightDestination = new FindToTargetDestination(
+            GOBLIN_NAME, DESTINATION, fightDistance * 0.9f);
+        BTSequence fight = new BTSequence("Fight", gobInSight);
+        BTParallel fightParallel = new BTParallel("FightParallel", BTParallel.ParallelFunction.Or);
+        fightParallel.AddChild(findFightDestination);
+        fightParallel.AddChild(move);
+        InSightPrec gobInFightDistance = new InSightPrec(fightDistance, GOBLIN_NAME);
+        fight.AddChild(fightParallel);
+        fight.AddChild(new PlayAnimation(FIGHT_ANIMATION, gobInFightDistance));
+        root.AddChild(fight);
 
         //Idle
         root.AddChild(new PlayAnimation(IDLE_ANIMATION));

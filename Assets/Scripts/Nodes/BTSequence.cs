@@ -19,7 +19,6 @@ namespace BehaviourTree.Nodes {
 
                 return result;
             } else if (children.Count <= 0) {
-                Debug.LogError("[ViE] 该队列节点没有子节点！");
                 return false;
             } else {
                 return children[0].Evaluate();
@@ -53,7 +52,6 @@ namespace BehaviourTree.Nodes {
             for (int i = 0, count = children.Count; i < count; i++) {
                 children[i].Clean();
             }
-            children.Clear();
         }
     }
 }

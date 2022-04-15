@@ -15,11 +15,11 @@ namespace BehaviourTree.Nodes {
             base (nodeName, precondition) {}
 
         protected virtual void Enter() {
-            Debug.Log("[ViE] BT动作开始");
+            Debug.Log($"[ViE] 动作{nodeName}开始");
         }
 
         protected virtual void Exit() {
-            Debug.Log("[ViE] BT动作退出");
+            Debug.Log($"[ViE] 动作{nodeName}退出");
         }
 
         protected virtual BTResult Execute() {
